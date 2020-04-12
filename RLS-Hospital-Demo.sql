@@ -166,15 +166,6 @@ go
 EXECUTE ('UPDATE patients SET Wing = 3 WHERE patientId = 1;') AS USER = 'nurse_BartonC' -- blocked from changing Wing to an unassigned one
 go
 
--- Click 'Include Actual Execution Plan' in SSMS (Ctrl + M)
--- This will show how the query plan changes when RLS is enabled
-ALTER SECURITY POLICY rls.PatientsSecurityPolicy WITH (STATE=OFF)
-SELECT * FROM patients
-go
-ALTER SECURITY POLICY rls.PatientsSecurityPolicy WITH (STATE=ON)
-SELECT * FROM patients
-go
-
 -- Monitor security policies and predicates using these system views
 SELECT * FROM sys.security_policies
 SELECT * FROM sys.security_predicates
